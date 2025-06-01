@@ -1,0 +1,18 @@
+# Node
+**/node_modules/
+**/dist/
+**/build/
+**/.turbo/
+**/.next/
+**/.vite/
+
+# Logs
+*.log
+
+# OS
+.DS_Store
+Thumbs.db
+
+# IDEs
+.vscode/
+.idea/
