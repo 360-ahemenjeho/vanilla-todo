@@ -1,7 +1,5 @@
-import { setupRouter } from '@/bootstrap/app'
-import router from '@/routes'
-import { injectEvents } from './bootstrap/events'
+import { setupRouter } from "@/boot/app";
+import router from "@/routes";
 
-const rootEl: any = document.querySelector<HTMLElement>('#root')
-setupRouter(rootEl, router)
-injectEvents()
+const rootEl: any = document.querySelector<HTMLElement>("#root");
+setupRouter(rootEl, router);
