@@ -4,17 +4,16 @@ import { View } from "@/types/global";
  * Renders the given HTML view inside the specified root element.
  * Also removes any existing <style> tags to prevent style stacking.
  */
-function renderView(rootEl: HTMLElement, viewHTML: string): void {
+function render(rootEl: HTMLElement, template: string): void {
   if (!rootEl) {
-    console.error("Root element not provided or not found.");
-    return;
+    throw new Error("Root element not provided or not found.");
   }
 
   // Remove old styles
   rootEl.querySelectorAll("style").forEach((style) => style.remove());
 
   // Inject new view
-  rootEl.innerHTML = viewHTML;
+  rootEl.innerHTML = template;
 }
 
 /**
@@ -22,16 +21,16 @@ function renderView(rootEl: HTMLElement, viewHTML: string): void {
  * Handles initial render and browser navigation events.
  * Returns a cleanup function to remove event listeners.
  */
-function setupRouter(rootEl: HTMLElement, routerFn: () => View) {
+export function configureRouter(rootEl: HTMLElement, route: () => View) {
   if (!rootEl) {
-    console.error("Root element not provided or not found.");
+    throw new Error("Root element not provided or not found.");
     return;
   }
 
   function handleRouteChange(): void {
-    const { html, setup } = routerFn();
-    renderView(rootEl, html);
-    setup?.();
+    const { template, effects } = route();
+    render(rootEl, template);
+    effects?.();
   }
 
   handleRouteChange();

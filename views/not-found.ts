@@ -1,7 +1,12 @@
-const notFoundPage = () => {
-  return `
-    <h1>Not found Page</h1>
-    <a href="/">return to home</a>
-  `;
+import { View } from "@/types/global";
+
+const notFoundView = (): View => {
+  return {
+    template: "<h1>Not found</h1>",
+    effects: () => {
+      console.log("oops");
+    },
+  };
 };
-export default notFoundPage;
+
+export default notFoundView;

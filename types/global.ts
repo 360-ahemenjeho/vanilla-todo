@@ -1,4 +1,4 @@
 export type View = {
-  html: string;
-  setup?: () => void;
+  template: string;
+  effects?: () => void;
 };
