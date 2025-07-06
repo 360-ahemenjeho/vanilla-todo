@@ -1,6 +1,7 @@
 :root {
     --typography-face: "Inter", sans-serif;
-    --round-lg: 24px;
+    --round-lg: 28px;
+    --divider-border: rgba(0, 0, 0, 0.1);
 }
 
 html,
@@ -15,10 +16,41 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
+    background-position-y: bottom;
+    font-size: clamp(1rem, 2.5vw, 1.1rem);
+    color: #3d3d3d;
 }
 
 * {
     font-family: var(--typography-face);
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-weight: 600;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p {
+    margin: 0;
+    line-height: 1.5;
+}
+
+h1 {
+    font-size: clamp(1.5rem, 3w, 2rem);
+}
+
+h2 {
+    font-size: clamp(1rem, 2vw, 1.5rem);
 }
 
 button {
@@ -29,8 +61,9 @@ button {
 #root {
     background-color: rgba(230, 240, 240, 0.5);
     border-radius: var(--round-lg);
-    padding: calc(var(--round-lg) * 1.5);
+    /* padding: calc(var(--round-lg) * 1.333); */
     backdrop-filter: blur(37px);
-    max-width: 70%;
-    min-width: 50%;
+    width: 40%;
+    max-height: 80vh;
+    box-sizing: border-box;
 }
