@@ -25,7 +25,7 @@ button {
 }
 
 #root {
-    background-color: rgba(210, 200, 200, 0.6);
+    background-color: rgba(230, 240, 240, 0.5);
     border-radius: var(--round-lg);
     padding: calc(var(--round-lg) * 1.5);
     backdrop-filter: blur(37px);
