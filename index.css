@@ -68,6 +68,11 @@ input {
     box-sizing: border-box;
 }
 
+input:focus-visible {
+    border: 1px solid #007aff;
+    background: rgba(210, 150, 150, 0.4);
+}
+
 label {
     color: rgba(110, 80, 80, 0.75);
     font-weight: 600;
