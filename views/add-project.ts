@@ -13,6 +13,11 @@ const addProjectView = (): View => {
       .content {
         padding: calc(var(--round-lg) * 0.4) calc(var(--round-lg) * 1.333);
       }
+      form {
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+      }
     </style>
     <div>
       <div class="header">
@@ -20,9 +25,15 @@ const addProjectView = (): View => {
       </div>
       <div class="content">
         <form id="addProject">
-          <input type="text" id="projectTitle" placeholder="I" />
-          <input type="datetime-local" id="projectStart" />
-          <input type="datetime-local" id="projectEnd" />
+          <div>
+              <input class="full" type="text" id="projectTitle" />
+          </div>
+          <div>
+            <input class="full" type="datetime-local" id="projectStart" />
+          </div>
+          <div>
+            <input class="full" type="datetime-local" id="projectEnd" />
+          </div>
           <button type="submit" class="primary">Submit Project</button>
         </form>
       </div>

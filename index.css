@@ -2,6 +2,7 @@
     --typography-face: "Inter", sans-serif;
     --round-lg: 28px;
     --divider-border: rgba(0, 0, 0, 0.1);
+    --fg-primary: #3d3d3d;
 }
 
 html,
@@ -18,7 +19,7 @@ body {
     justify-content: center;
     background-position-y: bottom;
     font-size: clamp(1rem, 2.5vw, 1.1rem);
-    color: #3d3d3d;
+    color: var(--fg-primary);
 }
 
 * {
@@ -54,21 +55,36 @@ h2 {
 }
 
 button {
-    padding: 12px 24px;
-    font-size: 16px;
-    border-radius: 8px;
+    padding: 11px 22px;
+    font-size: 14px;
+    border-radius: 10px;
     border: none;
     cursor: pointer;
 }
 button.primary {
     background-color: #007aff;
+    border: 1px solid #007aff;
     color: #ffffff;
+}
+
+input {
+    outline: none;
+    border: 1px solid rgba(220, 190, 190, 0.45);
+    padding: 8px 24px;
+    border-radius: 8px;
+    background-color: rgba(210, 150, 150, 0.4);
+    backdrop-filter: blur(4px);
+    color: rgba(110, 80, 80, 0.75);
+    box-sizing: border-box;
+}
+
+input.full {
+    width: 100%;
 }
 
 #root {
     background-color: rgba(230, 240, 240, 0.5);
     border-radius: var(--round-lg);
-    /* padding: calc(var(--round-lg) * 1.333); */
     backdrop-filter: blur(37px);
     width: 40%;
     max-height: 80vh;
