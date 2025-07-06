@@ -7,7 +7,6 @@ html,
 body {
     margin: 0;
     padding: 0;
-    font-family: var(--typography-face);
     height: 100vh;
     width: 100vw;
     background-image: url("/Wallpaper.svg");
@@ -18,8 +17,11 @@ body {
     justify-content: center;
 }
 
-button {
+* {
     font-family: var(--typography-face);
+}
+
+button {
     background-color: red;
     font-size: 18px;
 }
