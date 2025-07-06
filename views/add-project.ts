@@ -7,11 +7,11 @@ const addProjectView = (): View => {
     template: `
     <style>
       .header {
-        padding: calc(var(--round-lg) * 0.5) calc(var(--round-lg) * 1.333);
+        padding: calc(var(--round-lg) * 0.4) calc(var(--round-lg) * 1.333);
         border-bottom: 1px solid var(--divider-border);
       }
       .content {
-        padding: calc(var(--round-lg) * 0.5) calc(var(--round-lg) * 1.333);
+        padding: calc(var(--round-lg) * 0.4) calc(var(--round-lg) * 1.333);
       }
     </style>
     <div>
@@ -23,7 +23,7 @@ const addProjectView = (): View => {
           <input type="text" id="projectTitle" placeholder="I" />
           <input type="datetime-local" id="projectStart" />
           <input type="datetime-local" id="projectEnd" />
-          <button type="submit">Submit Project</button>
+          <button type="submit" class="primary">Submit Project</button>
         </form>
       </div>
     </div>
