@@ -26,28 +26,22 @@ body {
     font-family: var(--typography-face);
 }
 
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
+h1 {
     font-weight: 600;
 }
 
 h1,
-h2,
-h3,
-h4,
-h5,
-h6,
 p {
     margin: 0;
-    line-height: 1.5;
 }
 
 h1 {
     font-size: clamp(0.75rem, 2vw, 1rem);
+    line-height: 1;
+}
+
+p {
+    line-height: 1.5;
 }
 
 button {

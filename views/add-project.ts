@@ -7,7 +7,7 @@ const addProjectView = (): View => {
     template: `
     <style>
       .header {
-        padding: calc(var(--round-lg) * 0.4) calc(var(--round-lg) * 1.333);
+        padding: calc(var(--round-lg) * 0.5) calc(var(--round-lg) * 1.333);
         border-bottom: 1px solid var(--divider-border);
       }
       .content {
