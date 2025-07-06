@@ -2,7 +2,7 @@
     --typography-face: "Inter", sans-serif;
     --round-lg: 28px;
     --divider-border: rgba(0, 0, 0, 0.1);
-    --fg-primary: #3d3d3d;
+    --fg-primary: rgba(80, 61, 61, 0.8);
 }
 
 html,
