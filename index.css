@@ -47,11 +47,7 @@ p {
 }
 
 h1 {
-    font-size: clamp(1.5rem, 3w, 2rem);
-}
-
-h2 {
-    font-size: clamp(1rem, 2vw, 1.5rem);
+    font-size: clamp(0.75rem, 2vw, 1rem);
 }
 
 button {
@@ -78,6 +74,14 @@ input {
     box-sizing: border-box;
 }
 
+label {
+    color: rgba(110, 80, 80, 0.75);
+    font-weight: 600;
+    font-size: 12px;
+    line-height: 1;
+    display: block;
+}
+
 input.full {
     width: 100%;
 }
@@ -89,4 +93,10 @@ input.full {
     width: 40%;
     max-height: 80vh;
     box-sizing: border-box;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
 }
