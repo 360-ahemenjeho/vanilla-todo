@@ -1,5 +1,6 @@
 :root {
     --typography-face: "Inter", sans-serif;
+    --round-lg: 24px;
 }
 
 html,
@@ -7,4 +8,27 @@ body {
     margin: 0;
     padding: 0;
     font-family: var(--typography-face);
+    height: 100vh;
+    width: 100vw;
+    background-image: url("/Wallpaper.svg");
+    background-size: cover;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+button {
+    font-family: var(--typography-face);
+    background-color: red;
+    font-size: 18px;
+}
+
+#root {
+    background-color: rgba(210, 200, 200, 0.6);
+    border-radius: var(--round-lg);
+    padding: calc(var(--round-lg) * 1.5);
+    backdrop-filter: blur(37px);
+    max-width: 70%;
+    min-width: 50%;
 }

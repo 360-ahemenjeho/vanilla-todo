@@ -5,12 +5,12 @@ import { View } from "@/types/global";
 const addProjectView = (): View => {
   return {
     template: `
-    <h1>Contact Page</h1>
+    <h1>Add Project</h1>
     <form id="addProject">
       <input type="text" id="projectTitle" placeholder="I" />
       <input type="datetime-local" id="projectStart" />
       <input type="datetime-local" id="projectEnd" />
-      <button type="submit">submit</button>
+      <button type="submit">Submit Project</button>
     </form>
   `,
     effects: () => {
@@ -51,7 +51,7 @@ const addProjectView = (): View => {
         startDateEl.value = "";
         endDateEl.value = "";
 
-        window.alert("Project created successfully!");
+        window.alert("Project added successfully!");
       });
     },
   };
