@@ -2,7 +2,7 @@ import { storeKeys } from "@/lib/constants";
 import { convertSeconds, formatHumanDate } from "@/lib/date-utils";
 import { getItem } from "@/lib/store-utils";
 import { ProjectInterface } from "@/lib/types";
-import { buildUrlWithParam } from "@/lib/url";
+import { buildUrlWithParam, navigateTo } from "@/lib/url";
 import { View } from "@/types/global";
 
 const projectsView = (): View => {
@@ -49,6 +49,11 @@ const projectsView = (): View => {
           buildUrlWithParam(`/edit/project`, "id", id);
         }
       });
+
+      const addProjectButtonEl: any = document.getElementById("addProject");
+      addProjectButtonEl.addEventListener("click", () => {
+        navigateTo("/add/project");
+      });
     },
     template: `
       <style>
@@ -90,9 +95,15 @@ const projectsView = (): View => {
         .card-header .time {
           font-size: calc(var(--base-typography-size) * 0.888);
         }
+        .action {
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+        }
       </style>
-      <div class="header">
+      <div class="header action">
         <h1>Projects</h1>
+        <button class="primary sm" id="addProject">Add</button>
       </div>
       <div class="content">
         <ul id="projects-list">

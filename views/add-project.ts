@@ -6,6 +6,11 @@ import { View } from "@/types/global";
 const addProjectView = (): View => {
   return {
     effects: () => {
+      const backButtonEl: any = document.getElementById("backButton");
+      backButtonEl.addEventListener("click", () => {
+        navigateTo("/projects");
+      });
+
       const formEl: HTMLFormElement = document.querySelector("#addProject")!;
 
       if (!formEl) return;
@@ -63,6 +68,7 @@ const addProjectView = (): View => {
       .action {
         display: flex;
         justify-content: flex-end;
+        gap: 8px;
         margin-top: 16px;
       }
     </style>
@@ -85,6 +91,7 @@ const addProjectView = (): View => {
             <input class="full" type="datetime-local" id="projectEnd" />
           </div>
           <div class="action">
+            <button type="button" class="secondary md" id="backButton">Back</button>
             <button type="submit" class="primary md">Submit</button>
           </div>
         </form>

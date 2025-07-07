@@ -15,6 +15,11 @@ const editProjectView = (): View => {
 
   return {
     effects: () => {
+      const backButtonEl: any = document.getElementById("backButton");
+      backButtonEl.addEventListener("click", () => {
+        navigateTo("/projects");
+      });
+
       // Populate form fields with existing project data
       const titleEl =
         document.querySelector<HTMLInputElement>("#projectTitle")!;
@@ -105,7 +110,7 @@ const editProjectView = (): View => {
             <input class="full" type="datetime-local" id="projectEnd" value="${projectDetails?.end_date || ""}" />
           </div>
           <div class="action">
-            <button type="button" class="secondary md">Back</button>
+            <button type="button" class="secondary md" id="backButton">Back</button>
             <button type="submit" class="primary md">Update</button>
           </div>
         </form>
