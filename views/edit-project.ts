@@ -104,7 +104,7 @@ const editProjectView = (): View => {
             <input class="full" type="datetime-local" id="projectEnd" value="${projectDetails?.end_date || ""}" />
           </div>
           <div class="action">
-            <button type="submit" class="primary md">Update Project</button>
+            <button type="submit" class="primary md">Update</button>
           </div>
         </form>
       </div>
