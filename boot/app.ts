@@ -8,10 +8,8 @@ function render(rootEl: HTMLElement, template: string): void {
   if (!rootEl) {
     throw new Error("Root element not provided or not found.");
   }
-
   // Remove old styles
   rootEl.querySelectorAll("style").forEach((style) => style.remove());
-
   // Inject new view
   rootEl.innerHTML = template;
 }
@@ -21,10 +19,12 @@ function render(rootEl: HTMLElement, template: string): void {
  * Handles initial render and browser navigation events.
  * Returns a cleanup function to remove event listeners.
  */
-export function configureRouter(rootEl: HTMLElement, route: () => View) {
+export function configureRouter(
+  rootEl: HTMLElement,
+  route: () => View,
+): () => void {
   if (!rootEl) {
     throw new Error("Root element not provided or not found.");
-    return;
   }
 
   function handleRouteChange(): void {
@@ -34,5 +34,10 @@ export function configureRouter(rootEl: HTMLElement, route: () => View) {
   }
 
   handleRouteChange();
+
   window.addEventListener("popstate", handleRouteChange);
+
+  return () => {
+    window.removeEventListener("popstate", handleRouteChange);
+  };
 }

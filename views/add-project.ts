@@ -1,47 +1,10 @@
 import { Project } from "@/controllers/project";
+import { URLNavigation } from "@/lib/url";
 import { isValidDateString } from "@/lib/validation-utils";
 import { View } from "@/types/global";
 
 const addProjectView = (): View => {
   return {
-    template: `
-    <style>
-      .header {
-        padding: calc(var(--round-lg) * 0.5) calc(var(--round-lg) * 1.333);
-        border-bottom: 1px solid var(--divider-border);
-      }
-      .content {
-        padding: calc(var(--round-lg) * 1) calc(var(--round-lg) * 1.333);
-      }
-      form {
-        display: flex;
-        flex-direction: column;
-        gap: 8px;
-      }
-    </style>
-    <div>
-      <div class="header">
-        <h1>Add Project</h1>
-      </div>
-      <div class="content">
-        <form id="addProject">
-          <div class="form-group">
-            <label for="projectTitle">Title</label>
-            <input class="full" type="text" id="projectTitle" />
-          </div>
-          <div class="form-group">
-            <label for="projectStart">Start Date</label>
-            <input class="full" type="datetime-local" id="projectStart" />
-          </div>
-          <div class="form-group">
-            <label for="projectEnd">End Date</label>
-            <input class="full" type="datetime-local" id="projectEnd" />
-          </div>
-          <button type="submit" class="primary">Submit Project</button>
-        </form>
-      </div>
-    </div>
-  `,
     effects: () => {
       const formEl: HTMLFormElement = document.querySelector("#addProject")!;
 
@@ -74,15 +37,53 @@ const addProjectView = (): View => {
           return;
         }
 
-        Project.add({ title: title, start_date: startDate, end_date: endDate });
+        const result = Project.add({
+          title: title,
+          start_date: startDate,
+          end_date: endDate,
+        });
 
-        titleEl.value = "";
-        startDateEl.value = "";
-        endDateEl.value = "";
+        if (result) {
+          titleEl.value = "";
+          startDateEl.value = "";
+          endDateEl.value = "";
 
-        window.alert("Project added successfully!");
+          window.alert("Project added successfully!");
+          URLNavigation.navigateTo("/projects");
+        } else window.alert("Failed to add project!");
       });
     },
+    template: `
+    <style>
+      form {
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+      }
+    </style>
+    <div>
+      <div class="header">
+        <h1>Add Project</h1>
+      </div>
+      <div class="content">
+        <form id="addProject">
+          <div class="form-group">
+            <label for="projectTitle">Title</label>
+            <input class="full" type="text" id="projectTitle" />
+          </div>
+          <div class="form-group">
+            <label for="projectStart">Start Date</label>
+            <input class="full" type="datetime-local" id="projectStart" />
+          </div>
+          <div class="form-group">
+            <label for="projectEnd">End Date</label>
+            <input class="full" type="datetime-local" id="projectEnd" />
+          </div>
+          <button type="submit" class="primary">Submit Project</button>
+        </form>
+      </div>
+    </div>
+  `,
   };
 };
 export default addProjectView;

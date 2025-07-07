@@ -1,24 +1,37 @@
-export class URLParam {
+export class URLNavigation {
   private pathname: string;
 
   constructor(pathname: string) {
     this.pathname = pathname;
   }
 
-  set(param: string): void {
+  setParam(param: string): void {
     const url = new URL(window.location.origin + this.pathname);
     url.searchParams.set("param", param);
-    window.history.pushState({}, "", url);
+    window.history.pushState(null, "", url);
   }
 
-  get(): string | null {
+  getParam(param: string): string | null {
     const params = new URLSearchParams(window.location.search);
-    return params.get("param");
+    return params.get(param);
   }
 
-  remove(): void {
+  removeParam(param: string): void {
     const url = new URL(window.location.origin + this.pathname);
-    url.searchParams.delete("param");
-    window.history.pushState({}, "", url);
+    url.searchParams.delete(param);
+    window.history.pushState(null, "", url);
+  }
+
+  static navigateTo(pathname: string): void {
+    const url = new URL(window.location.origin + pathname);
+    window.history.pushState(null, "", url);
+  }
+
+  static navigateBack(): void {
+    window.history.back();
+  }
+
+  static navigateForward(): void {
+    window.history.forward();
   }
 }

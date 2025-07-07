@@ -1,4 +1,4 @@
-import { addProjectView, notFoundView } from "@/views";
+import { addProjectView, notFoundView, projectsView } from "@/views";
 
 export default function router() {
   const pathname = window.location.pathname;
@@ -6,6 +6,8 @@ export default function router() {
   switch (pathname) {
     case "/add-project":
       return addProjectView;
+    case "/projects":
+      return projectsView;
     default:
       return notFoundView;
   }
