@@ -1,7 +1,7 @@
 :root {
     --typography-face: "Inter", sans-serif;
     --round-lg: 28px;
-    --divider-border: rgba(0, 0, 0, 0.1);
+    --divider-border-color: rgba(0, 0, 0, 0.1);
     --fg-primary: rgba(80, 61, 61, 0.8);
 }
 
@@ -102,7 +102,7 @@ input.full {
 
 .header {
     padding: calc(var(--round-lg) * 0.5) calc(var(--round-lg) * 1.333);
-    border-bottom: 1px solid var(--divider-border);
+    border-bottom: 1px solid var(--divider-border-color);
 }
 .content {
     padding: calc(var(--round-lg) * 1) calc(var(--round-lg) * 1.333);

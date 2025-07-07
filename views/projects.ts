@@ -15,6 +15,15 @@ const projectsView = (): View => {
         li {
         background-color: 'red'
         }
+        ul li {
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          padding: calc(var(--round-lg) * 0.5) calc(var(--round-lg) * 0.75);
+          border-radius: calc(var(--round-lg) * 0.5);
+          background-color: rgba(150, 90, 90, 0.4);
+          backdrop-filter: blur(4px);
+        }
       </style>
       <div class="header">
         <h1>Projects</h1>
