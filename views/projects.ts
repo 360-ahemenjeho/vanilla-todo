@@ -11,7 +11,12 @@ const projectsView = (): View => {
 
   const renderProjectsList = () => {
     if (!projects?.length) {
-      return "<li>No projects found</li>";
+      return `
+        <li class="not-found">
+          <p class="not-found-title">No projects found</p>
+          <p>You don't have projects. Please add a project!</p>
+        </li>
+      `;
     }
 
     return projects
@@ -63,17 +68,11 @@ const projectsView = (): View => {
           list-style-type: none;
         }
         ul li {
-          display: flex;
-          flex-direction: column;
-          gap: calc(var(--round-lg) * 0.5);
           padding: calc(var(--round-lg) * 0.5) calc(var(--round-lg) * 0.75);
           border-radius: calc(var(--round-lg) * 0.7);
           background-color: rgba(100, 40, 40, 0.4);
           backdrop-filter: blur(4px);
           color: var(--fg-secondary);
-          display: flex;
-          flex-direction: column;
-          gap: calc(var(--round-lg) * 0.5);
         }
         .card-header {
           display: flex;
@@ -99,6 +98,13 @@ const projectsView = (): View => {
           display: flex;
           align-items: center;
           justify-content: space-between;
+        }
+        .not-found {
+          text-align: center;
+          font-size: calc(var(--base-typography-size) * 0.888);
+        }
+        .not-found .not-found-title {
+          font-weight: 600;
         }
       </style>
       <div class="header action">
