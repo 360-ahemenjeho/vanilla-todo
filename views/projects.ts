@@ -36,7 +36,7 @@ const projectsView = (): View => {
         titleWrapperEl.setAttribute("class", "column-stack");
 
         titleEl.textContent = projectItem.title;
-        timeEl.textContent = `${formatHumanDate(projectItem.start_date)} - ${formatHumanDate(projectItem.end_date)} - ${convertSeconds(Number(projectItem.duration), "d")}`;
+        timeEl.textContent = `${formatHumanDate(projectItem.start_date)} - ${formatHumanDate(projectItem.end_date)} - ${convertSeconds(Number(projectItem.duration), "d")} Days`;
         titleWrapperEl.appendChild(titleEl);
         titleWrapperEl.appendChild(timeEl);
 
@@ -60,16 +60,18 @@ const projectsView = (): View => {
           padding: 0;
           list-style-type: none;
         }
-
         ul li {
           display: flex;
           flex-direction: column;
           gap: calc(var(--round-lg) * 0.5);
           padding: calc(var(--round-lg) * 0.5) calc(var(--round-lg) * 0.75);
           border-radius: calc(var(--round-lg) * 0.5);
-          background-color: rgba(120, 60, 60, 0.4);
+          background-color: rgba(100, 40, 40, 0.4);
           backdrop-filter: blur(4px);
           color: var(--fg-secondary);
+          display: flex;
+          flex-direction: column;
+          gap: calc(var(--round-lg) * 0.5);
         }
         .card-header {
           display: flex;

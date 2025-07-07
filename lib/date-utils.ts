@@ -53,5 +53,5 @@ export function convertSeconds(seconds: number, unit: string): number {
     throw new Error(`Invalid unit: ${unit}. Use: m, h, d, w, M, Y`);
   }
 
-  return seconds / conversions[unit];
+  return seconds / 1000 / conversions[unit];
 }
