@@ -19,7 +19,7 @@ const projectsView = (): View => {
 
       function viewProject(id: string | null) {
         if (id === null) return;
-        const url = new URLNavigation(`/details/project`);
+        const url = new URLNavigation(`/edit/project`);
         url.setParam("id", id);
       }
 
@@ -44,12 +44,12 @@ const projectsView = (): View => {
         titleWrapperEl.setAttribute("class", "column-stack");
 
         titleEl.textContent = projectItem.title;
-        timeEl.textContent = `${formatHumanDate(projectItem.start_date)} - ${formatHumanDate(projectItem.end_date)} - ${convertSeconds(Number(projectItem.duration), "d")} Days`;
+        timeEl.textContent = `${formatHumanDate(projectItem.start_date)} - ${formatHumanDate(projectItem.end_date)} @ ${convertSeconds(Number(projectItem.duration), "d")} Days`;
         titleWrapperEl.appendChild(titleEl);
         titleWrapperEl.appendChild(timeEl);
 
         primaryActionEl.textContent = "Edit";
-        secondaryActionEl.textContent = "Projects";
+        secondaryActionEl.textContent = "Tasks";
 
         primaryActionEl.addEventListener("click", () =>
           viewProject(projectItem.id || null),
@@ -88,7 +88,7 @@ const projectsView = (): View => {
         .card-header {
           display: flex;
           justify-content: space-between;
-          align-items: start;
+          align-items: center;
         }
         .card-header .title {
           font-size: calc(var(--base-typography-size) * 1.111);

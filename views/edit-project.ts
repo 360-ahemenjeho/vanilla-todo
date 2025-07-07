@@ -4,7 +4,7 @@ import { isValidDateString } from "@/lib/validation-utils";
 import { View } from "@/types/global";
 
 const editProjectView = (): View => {
-  const url = new URLNavigation("/details/project");
+  const url = new URLNavigation("/edit/project");
   const id = url.getParam("id");
 
   if (!id) {

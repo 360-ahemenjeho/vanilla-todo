@@ -8,6 +8,8 @@ export default function router() {
       return addProjectView;
     case "/projects":
       return projectsView;
+    case "/edit/project":
+      return projectsView;
     default:
       return notFoundView;
   }
