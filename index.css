@@ -38,7 +38,7 @@ p {
 }
 
 h1 {
-    font-size: calc(var(--base-typography-size) * 1.333);
+    font-size: calc(var(--base-typography-size) * 1.122);
     line-height: 1;
 }
 
@@ -117,7 +117,7 @@ input.full {
 }
 
 .header {
-    padding: calc(var(--round-lg) * 0.5) calc(var(--round-lg) * 1.333);
+    padding: calc(var(--round-lg) * 0.8) calc(var(--round-lg) * 1.333);
     border-bottom: 1px solid var(--divider-border-color);
 }
 .content {
