@@ -51,7 +51,46 @@ const projectsView = (): View => {
       });
     },
     template: `
-      <!-- styles -->
+      <style>
+        ul {
+          margin: 0;
+          padding: 0;
+          list-style-type: none;
+        }
+        ul li {
+          display: flex;
+          flex-direction: column;
+          gap: calc(var(--round-lg) * 0.5);
+          padding: calc(var(--round-lg) * 0.5) calc(var(--round-lg) * 0.75);
+          border-radius: calc(var(--round-lg) * 0.5);
+          background-color: rgba(100, 40, 40, 0.4);
+          backdrop-filter: blur(4px);
+          color: var(--fg-secondary);
+          display: flex;
+          flex-direction: column;
+          gap: calc(var(--round-lg) * 0.5);
+        }
+        .card-header {
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+        }
+        .card-header .title {
+          font-size: calc(var(--base-typography-size) * 1.111);
+          font-weight: 500;
+        }
+        .card-header .stack {
+          display: flex;
+          gap: 8px;
+        }
+        .card-header .column-stack {
+          display: flex;
+          flex-direction: column;
+        }
+        .card-header .time {
+          font-size: calc(var(--base-typography-size) * 0.888);
+        }
+      </style>
       <div class="header">
         <h1>Projects</h1>
       </div>
