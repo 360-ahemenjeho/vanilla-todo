@@ -79,7 +79,7 @@ const addProjectView = (): View => {
             <label for="projectEnd">End Date</label>
             <input class="full" type="datetime-local" id="projectEnd" />
           </div>
-          <button type="submit" class="primary">Submit Project</button>
+          <button type="submit" class="primary md">Submit Project</button>
         </form>
       </div>
     </div>

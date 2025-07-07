@@ -3,6 +3,8 @@
     --round-lg: 28px;
     --divider-border-color: rgba(0, 0, 0, 0.1);
     --fg-primary: rgba(80, 61, 61, 0.8);
+    --fg-secondary: rgba(250, 220, 220, 0.8);
+    --base-typography-size: 14px;
 }
 
 html,
@@ -18,7 +20,7 @@ body {
     align-items: center;
     justify-content: center;
     background-position-y: bottom;
-    font-size: 14px;
+    font-size: var(--base-typography-size);
     color: var(--fg-primary);
 }
 
@@ -36,7 +38,7 @@ p {
 }
 
 h1 {
-    font-size: 17px;
+    font-size: calc(var(--base-typography-size) * 1.333);
     line-height: 1;
 }
 
@@ -45,16 +47,30 @@ p {
 }
 
 button {
+    cursor: pointer;
+}
+button.sm {
+    padding: 8px 16px;
+    font-size: 12px;
+    border-radius: 8px;
+    border: none;
+    font-weight: 500;
+}
+button.md {
     padding: 11px 22px;
     font-size: 14px;
     border-radius: 10px;
     border: none;
-    cursor: pointer;
 }
 button.primary {
     background-color: #007aff;
     border: 1px solid #007aff;
     color: #ffffff;
+}
+button.secondary {
+    background-color: #ffffff;
+    border: 1px solid rgba(225, 185, 185, 0.65);
+    color: rgba(110, 80, 80, 0.75);
 }
 
 input {
@@ -89,7 +105,7 @@ input.full {
     background-color: rgba(230, 240, 240, 0.5);
     border-radius: var(--round-lg);
     backdrop-filter: blur(37px);
-    width: 40%;
+    width: 50%;
     max-height: 80vh;
     box-sizing: border-box;
 }

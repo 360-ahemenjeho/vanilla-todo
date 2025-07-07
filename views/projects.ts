@@ -1,37 +1,11 @@
 import { storeKeys } from "@/lib/constants";
+import { convertSeconds, formatHumanDate } from "@/lib/date-utils";
 import { getItem } from "@/lib/store-utils";
 import { ProjectInterface } from "@/lib/types";
 import { View } from "@/types/global";
 
 const projectsView = (): View => {
   return {
-    template: `
-      <style>
-        ul {
-          margin: 0;
-          padding: 0;
-          list-style-type: none;
-        },
-        li {
-        background-color: 'red'
-        }
-        ul li {
-          display: flex;
-          align-items: center;
-          justify-content: space-between;
-          padding: calc(var(--round-lg) * 0.5) calc(var(--round-lg) * 0.75);
-          border-radius: calc(var(--round-lg) * 0.5);
-          background-color: rgba(150, 90, 90, 0.4);
-          backdrop-filter: blur(4px);
-        }
-      </style>
-      <div class="header">
-        <h1>Projects</h1>
-      </div>
-      <div class="content">
-        <ul id="projects-list"></ul>
-      </div>
-    `,
     effects: () => {
       const projects: ProjectInterface[] = getItem(storeKeys.project);
       const projectsListEl: any = document.getElementById("projects-list");
@@ -43,10 +17,88 @@ const projectsView = (): View => {
       }
       projects?.forEach((projectItem: ProjectInterface) => {
         const liEl = document.createElement("li");
-        liEl.textContent = projectItem.title;
+
+        // project header
+        const headerEl = document.createElement("div");
+        const headerActionsEl = document.createElement("div");
+        const titleWrapperEl = document.createElement("div");
+        const titleEl = document.createElement("p");
+        const primaryActionEl = document.createElement("button");
+        const secondaryActionEl = document.createElement("button");
+        const timeEl = document.createElement("p");
+
+        titleEl.setAttribute("class", "title");
+        timeEl.setAttribute("class", "time");
+        primaryActionEl.setAttribute("class", "primary sm");
+        secondaryActionEl.setAttribute("class", "secondary sm");
+        headerEl.setAttribute("class", "card-header");
+        headerActionsEl.setAttribute("class", "stack");
+        titleWrapperEl.setAttribute("class", "column-stack");
+
+        titleEl.textContent = projectItem.title;
+        timeEl.textContent = `${formatHumanDate(projectItem.start_date)} - ${formatHumanDate(projectItem.end_date)} - ${convertSeconds(Number(projectItem.duration), "d")}`;
+        titleWrapperEl.appendChild(titleEl);
+        titleWrapperEl.appendChild(timeEl);
+
+        primaryActionEl.textContent = "Edit";
+        secondaryActionEl.textContent = "Projects";
+
+        headerActionsEl.appendChild(secondaryActionEl);
+        headerActionsEl.appendChild(primaryActionEl);
+
+        headerEl.appendChild(titleWrapperEl);
+        headerEl.appendChild(headerActionsEl);
+
+        liEl.appendChild(headerEl);
         projectsListEl.appendChild(liEl);
       });
     },
+    template: `
+      <style>
+        ul {
+          margin: 0;
+          padding: 0;
+          list-style-type: none;
+        }
+
+        ul li {
+          display: flex;
+          flex-direction: column;
+          gap: calc(var(--round-lg) * 0.5);
+          padding: calc(var(--round-lg) * 0.5) calc(var(--round-lg) * 0.75);
+          border-radius: calc(var(--round-lg) * 0.5);
+          background-color: rgba(120, 60, 60, 0.4);
+          backdrop-filter: blur(4px);
+          color: var(--fg-secondary);
+        }
+        .card-header {
+          display: flex;
+          justify-content: space-between;
+          align-items: start;
+        }
+        .card-header .title {
+          font-size: calc(var(--base-typography-size) * 1.111);
+          font-weight: 500;
+        }
+        .card-header .stack {
+          display: flex;
+          gap: 8px;
+        }
+        .card-header .column-stack {
+          display: flex;
+          flex-direction: column;
+        }
+        .card-header .time {
+          font-size: calc(var(--base-typography-size) * 0.888);
+        }
+      </style>
+      <div class="header">
+        <h1>Projects</h1>
+      </div>
+      <div class="content">
+        <ul id="projects-list"></ul>
+      </div>
+    `,
   };
 };
 
