@@ -1,6 +1,6 @@
 :root {
     --typography-face: "Inter", sans-serif;
-    --round-lg: 28px;
+    --round-lg: 18px;
     --divider-border-color: rgba(0, 0, 0, 0.1);
     --fg-primary: rgba(80, 61, 61, 0.8);
     --fg-secondary: rgba(250, 220, 220, 0.8);
