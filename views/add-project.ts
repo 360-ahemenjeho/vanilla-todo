@@ -1,5 +1,5 @@
 import { Project } from "@/controllers/project";
-import { URLNavigation } from "@/lib/url";
+import { navigateTo } from "@/lib/url";
 import { isValidDateString } from "@/lib/validation-utils";
 import { View } from "@/types/global";
 
@@ -49,7 +49,7 @@ const addProjectView = (): View => {
           endDateEl.value = "";
 
           window.alert("Project added successfully!");
-          URLNavigation.navigateTo("/projects");
+          navigateTo("/projects");
         } else window.alert("Failed to add project!");
       });
     },
@@ -63,6 +63,7 @@ const addProjectView = (): View => {
       .action {
         display: flex;
         justify-content: flex-end;
+        margin-top: 16px;
       }
     </style>
     <div>

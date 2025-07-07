@@ -68,8 +68,8 @@ button.primary {
     color: #ffffff;
 }
 button.secondary {
-    background-color: rgba(70, 20, 20, 0.3);
-    border: 1px solid rgba(230, 190, 190, 0.5);
+    background-color: rgba(70, 20, 20, 0.4);
+    border: 1px solid rgba(70, 15, 15, 0.1);
     color: var(--fg-secondary);
 }
 

@@ -1,37 +1,33 @@
-export class URLNavigation {
-  private pathname: string;
+export function buildUrlWithParam(
+  pathname: string,
+  key: string,
+  value: string,
+): string {
+  const url = new URL(window.location.origin + pathname);
+  url.searchParams.set(key, value);
+  return url.toString();
+}
 
-  constructor(pathname: string) {
-    this.pathname = pathname;
-  }
+export function getUrlParam(param: string): string | null {
+  const params = new URLSearchParams(window.location.search);
+  return params.get(param);
+}
 
-  setParam(key: string, value: string): void {
-    const url = new URL(window.location.origin + this.pathname);
-    url.searchParams.set(key, value);
-    window.history.pushState(null, "", url);
-  }
+export function removeUrlParam(param: string): void {
+  const url = new URL(window.location.href);
+  url.searchParams.delete(param);
+  window.history.pushState(null, "", url);
+}
 
-  getParam(param: string): string | null {
-    const params = new URLSearchParams(window.location.search);
-    return params.get(param);
-  }
+export function navigateTo(pathname: string): void {
+  const url = new URL(window.location.origin + pathname);
+  window.history.pushState(null, "", url);
+}
 
-  removeParam(param: string): void {
-    const url = new URL(window.location.origin + this.pathname);
-    url.searchParams.delete(param);
-    window.history.pushState(null, "", url);
-  }
+export function navigateBack(): void {
+  window.history.back();
+}
 
-  static navigateTo(pathname: string): void {
-    const url = new URL(window.location.origin + pathname);
-    window.history.pushState(null, "", url);
-  }
-
-  static navigateBack(): void {
-    window.history.back();
-  }
-
-  static navigateForward(): void {
-    window.history.forward();
-  }
+export function navigateForward(): void {
+  window.history.forward();
 }

@@ -2,7 +2,7 @@ import { storeKeys } from "@/lib/constants";
 import { convertSeconds, formatHumanDate } from "@/lib/date-utils";
 import { getItem } from "@/lib/store-utils";
 import { ProjectInterface } from "@/lib/types";
-import { URLNavigation } from "@/lib/url";
+import { buildUrlWithParam } from "@/lib/url";
 import { View } from "@/types/global";
 
 const projectsView = (): View => {
@@ -46,11 +46,8 @@ const projectsView = (): View => {
         const id = target.dataset.id;
 
         if (action === "edit" && id) {
-          const url = new URLNavigation(`/edit/project`);
-          url.setParam("id", id);
-          URLNavigation.navigateTo(url.toString()); // Actually navigate!
+          buildUrlWithParam(`/edit/project`, "id", id);
         }
-        // Handle tasks action...
       });
     },
     template: `

@@ -1,14 +1,13 @@
 import { Project } from "@/controllers/project";
-import { URLNavigation } from "@/lib/url";
+import { getUrlParam, navigateTo } from "@/lib/url";
 import { isValidDateString } from "@/lib/validation-utils";
 import { View } from "@/types/global";
 
 const editProjectView = (): View => {
-  const url = new URLNavigation(window.location.pathname);
-  const id = url.getParam("id");
+  const id = getUrlParam("id");
 
   if (!id) {
-    URLNavigation.navigateTo("/projects");
+    navigateTo("/projects");
     return { effects: () => {}, template: "" };
   }
 
@@ -69,7 +68,7 @@ const editProjectView = (): View => {
 
         if (result) {
           window.alert("Project updated successfully!");
-          URLNavigation.navigateTo("/projects");
+          navigateTo("/projects");
         } else window.alert("Failed to update project!");
       });
     },
@@ -83,6 +82,8 @@ const editProjectView = (): View => {
       .action {
         display: flex;
         justify-content: flex-end;
+        gap: 8px;
+        margin-top: 16px;
       }
     </style>
     <div>
@@ -104,6 +105,7 @@ const editProjectView = (): View => {
             <input class="full" type="datetime-local" id="projectEnd" value="${projectDetails?.end_date || ""}" />
           </div>
           <div class="action">
+            <button type="submit" class="secondary md">Back</button>
             <button type="submit" class="primary md">Update</button>
           </div>
         </form>
