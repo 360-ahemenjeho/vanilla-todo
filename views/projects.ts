@@ -67,7 +67,7 @@ const projectsView = (): View => {
           flex-direction: column;
           gap: calc(var(--round-lg) * 0.5);
           padding: calc(var(--round-lg) * 0.5) calc(var(--round-lg) * 0.75);
-          border-radius: calc(var(--round-lg) * 0.5);
+          border-radius: calc(var(--round-lg) * 0.7);
           background-color: rgba(100, 40, 40, 0.4);
           backdrop-filter: blur(4px);
           color: var(--fg-secondary);
