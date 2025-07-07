@@ -27,11 +27,14 @@ const editProjectView = (): View => {
         document.querySelector<HTMLInputElement>("#projectStart")!;
       const endDateEl =
         document.querySelector<HTMLInputElement>("#projectEnd")!;
+      const statusEl =
+        document.querySelector<HTMLInputElement>("projectStatus")!;
 
       if (projectDetails) {
         titleEl.value = projectDetails.title || "";
         startDateEl.value = projectDetails.start_date || "";
         endDateEl.value = projectDetails.end_date || "";
+        statusEl.value = projectDetails.status;
       }
 
       const formEl: HTMLFormElement = document.querySelector("#editProject")!;
@@ -47,10 +50,13 @@ const editProjectView = (): View => {
           document.querySelector<HTMLInputElement>("#projectStart")!;
         const endDateEl =
           document.querySelector<HTMLInputElement>("#projectEnd")!;
+        const statusEl =
+          document.querySelector<HTMLInputElement>("#projectStatus")!;
 
         let title = titleEl?.value;
         let startDate = startDateEl?.value;
         let endDate = endDateEl?.value;
+        let status: any = statusEl?.value;
 
         if (!title) {
           window.alert("Project title is required!");
@@ -64,11 +70,16 @@ const editProjectView = (): View => {
           window.alert("Invalid end date!");
           return;
         }
+        if (!status) {
+          window.alert("Project status is required!");
+          return;
+        }
 
         const result = Project.update(id, {
-          title: title,
+          title,
           start_date: startDate,
           end_date: endDate,
+          status,
         });
 
         if (result) {
@@ -108,6 +119,13 @@ const editProjectView = (): View => {
           <div class="form-group">
             <label for="projectEnd">End Date</label>
             <input class="full" type="datetime-local" id="projectEnd" value="${projectDetails?.end_date || ""}" />
+          </div>
+          <div class="form-group">
+            <label for="projectStatus">Status</label>
+            <select id="projectStatus" class="full">
+              <option value="pending">Pending</option>
+              <option value="completed">Completed</option>
+            </select>
           </div>
           <div class="action">
             <button type="button" class="secondary md" id="backButton">Back</button>

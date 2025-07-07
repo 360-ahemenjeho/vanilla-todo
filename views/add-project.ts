@@ -46,6 +46,7 @@ const addProjectView = (): View => {
           title: title,
           start_date: startDate,
           end_date: endDate,
+          status: "pending",
         });
 
         if (result) {

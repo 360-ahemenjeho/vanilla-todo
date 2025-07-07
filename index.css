@@ -72,7 +72,9 @@ button.secondary {
     color: var(--fg-secondary);
 }
 
-input {
+input,
+select,
+textarea {
     outline: none;
     border: 1px solid rgba(200, 170, 170, 0.4);
     padding: 8px 24px;
@@ -83,7 +85,9 @@ input {
     box-sizing: border-box;
 }
 
-input:focus-visible {
+input:focus,
+select:focus,
+textarea:focus {
     border: 1px solid #007aff;
     background: rgba(210, 150, 150, 0.4);
 }
@@ -96,8 +100,28 @@ label {
     display: block;
 }
 
-input.full {
+input.full,
+select.full {
     width: 100%;
+}
+
+.badge {
+    display: "block";
+    width: "fit-content";
+    fontsize: calc(var(--base-typography-size) * 0.8);
+    font-weight: 600;
+    padding: 6px 9px;
+    border-radius: 999px;
+}
+
+.badge.success {
+    background-color: green;
+    color: #ffffff;
+}
+
+.badge.error {
+    background-color: red;
+    color: #ffffff;
 }
 
 #root {

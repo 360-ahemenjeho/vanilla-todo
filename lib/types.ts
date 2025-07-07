@@ -4,6 +4,7 @@ export interface ProjectInterface {
   start_date: string;
   end_date: string;
   duration?: string;
+  status: "completed" | "pending";
 }
 
 export interface TodoInterface {
