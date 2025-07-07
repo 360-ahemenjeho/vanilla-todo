@@ -4,11 +4,11 @@ import { isValidDateString } from "@/lib/validation-utils";
 import { View } from "@/types/global";
 
 const editProjectView = (): View => {
-  const url = new URLNavigation("/edit/project");
+  const url = new URLNavigation(window.location.pathname);
   const id = url.getParam("id");
 
   if (!id) {
-    URLNavigation.navigateBack();
+    URLNavigation.navigateTo("/projects");
     return { effects: () => {}, template: "" };
   }
 
@@ -80,6 +80,10 @@ const editProjectView = (): View => {
         flex-direction: column;
         gap: 8px;
       }
+      .action {
+        display: flex;
+        justify-content: flex-end;
+      }
     </style>
     <div>
       <div class="header">
@@ -99,7 +103,9 @@ const editProjectView = (): View => {
             <label for="projectEnd">End Date</label>
             <input class="full" type="datetime-local" id="projectEnd" value="${projectDetails?.end_date || ""}" />
           </div>
-          <button type="submit" class="primary md">Update Project</button>
+          <div class="action">
+            <button type="submit" class="primary md">Update Project</button>
+          </div>
         </form>
       </div>
     </div>

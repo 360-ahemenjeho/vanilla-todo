@@ -60,6 +60,10 @@ const addProjectView = (): View => {
         flex-direction: column;
         gap: 8px;
       }
+      .action {
+        display: flex;
+        justify-content: flex-end;
+      }
     </style>
     <div>
       <div class="header">
@@ -79,7 +83,9 @@ const addProjectView = (): View => {
             <label for="projectEnd">End Date</label>
             <input class="full" type="datetime-local" id="projectEnd" />
           </div>
-          <button type="submit" class="primary md">Submit Project</button>
+          <div class="action">
+            <button type="submit" class="primary md">Submit Project</button>
+          </div>
         </form>
       </div>
     </div>

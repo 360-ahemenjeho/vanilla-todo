@@ -75,7 +75,7 @@ button.secondary {
 
 input {
     outline: none;
-    border: 1px solid rgba(220, 190, 190, 0.45);
+    border: 1px solid rgba(200, 170, 170, 0.4);
     padding: 8px 24px;
     border-radius: 8px;
     background-color: rgba(210, 150, 150, 0.4);
