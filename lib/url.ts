@@ -5,9 +5,9 @@ export class URLNavigation {
     this.pathname = pathname;
   }
 
-  setParam(param: string): void {
+  setParam(key: string, value: string): void {
     const url = new URL(window.location.origin + this.pathname);
-    url.searchParams.set("param", param);
+    url.searchParams.set(key, value);
     window.history.pushState(null, "", url);
   }
 

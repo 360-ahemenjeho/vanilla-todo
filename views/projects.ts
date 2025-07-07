@@ -2,6 +2,7 @@ import { storeKeys } from "@/lib/constants";
 import { convertSeconds, formatHumanDate } from "@/lib/date-utils";
 import { getItem } from "@/lib/store-utils";
 import { ProjectInterface } from "@/lib/types";
+import { URLNavigation } from "@/lib/url";
 import { View } from "@/types/global";
 
 const projectsView = (): View => {
@@ -15,6 +16,13 @@ const projectsView = (): View => {
         projectsListEl.appendChild(noFoundLiEl);
         return;
       }
+
+      function viewProject(id: string | null) {
+        if (id === null) return;
+        const url = new URLNavigation(`/details/project`);
+        url.setParam("id", id);
+      }
+
       projects?.forEach((projectItem: ProjectInterface) => {
         const liEl = document.createElement("li");
 
@@ -42,6 +50,10 @@ const projectsView = (): View => {
 
         primaryActionEl.textContent = "Edit";
         secondaryActionEl.textContent = "Projects";
+
+        primaryActionEl.addEventListener("click", () =>
+          viewProject(projectItem.id || null),
+        );
 
         headerActionsEl.appendChild(secondaryActionEl);
         headerActionsEl.appendChild(primaryActionEl);

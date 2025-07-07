@@ -25,4 +25,43 @@ export class Project {
     setItem(storeKeys.project, newProjects);
     return true;
   }
+
+  static update(
+    id: string,
+    { title, start_date, end_date }: ProjectInterface,
+  ): boolean {
+    const startDate = new Date(start_date);
+    const endDate = new Date(end_date);
+
+    const duration = endDate.getTime() - startDate.getTime();
+
+    const updatedProject = {
+      title,
+      start_date,
+      end_date,
+      duration,
+      id,
+    };
+
+    const previousProjects = getItem(storeKeys.project) ?? [];
+    const projectIndex = previousProjects.findIndex(
+      (project: any) => project.id === id,
+    );
+
+    if (projectIndex === -1) {
+      return false;
+    }
+
+    const newProjects = [...previousProjects];
+    newProjects[projectIndex] = updatedProject;
+
+    setItem(storeKeys.project, newProjects);
+    return true;
+  }
+
+  static view(id: string): ProjectInterface | null {
+    const projects = getItem(storeKeys.project) ?? [];
+    const project = projects.find((project: any) => project.id === id);
+    return project || null;
+  }
 }
