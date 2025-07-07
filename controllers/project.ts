@@ -3,7 +3,12 @@ import { getItem, setItem } from "@/lib/store-utils";
 import { ProjectInterface } from "@/lib/types";
 
 export class Project {
-  static add({ title, start_date, end_date }: ProjectInterface): boolean {
+  static add({
+    title,
+    start_date,
+    end_date,
+    status,
+  }: ProjectInterface): boolean {
     const id = crypto.randomUUID();
 
     const startDate = new Date(start_date);
@@ -17,6 +22,7 @@ export class Project {
       end_date,
       duration,
       id,
+      status,
     };
 
     const previousProjects = getItem(storeKeys.project) ?? [];
@@ -28,7 +34,7 @@ export class Project {
 
   static update(
     id: string,
-    { title, start_date, end_date }: ProjectInterface,
+    { title, start_date, end_date, status }: ProjectInterface,
   ): boolean {
     const startDate = new Date(start_date);
     const endDate = new Date(end_date);
@@ -41,6 +47,7 @@ export class Project {
       end_date,
       duration,
       id,
+      status,
     };
 
     const previousProjects = getItem(storeKeys.project) ?? [];

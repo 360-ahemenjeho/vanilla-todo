@@ -2,10 +2,10 @@ export function buildUrlWithParam(
   pathname: string,
   key: string,
   value: string,
-): string {
+): void {
   const url = new URL(window.location.origin + pathname);
   url.searchParams.set(key, value);
-  return url.toString();
+  window.history.pushState(null, "", url);
 }
 
 export function getUrlParam(param: string): string | null {

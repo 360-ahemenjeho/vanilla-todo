@@ -25,7 +25,10 @@ const projectsView = (): View => {
       <li>
         <div class="card-header">
           <div class="column-stack">
-            <p class="title">${project.title}</p>
+            <div class="titleWrapper">
+              <p class="title">${project.title}</p>
+              <div class="badge ${project.status == "completed" ? "success" : "error"}">${project.status}</div>
+            </div>
             <p class="time">${formatHumanDate(project.start_date)} - ${formatHumanDate(project.end_date)} @ ${convertSeconds(Number(project.duration), "d")} Days</p>
           </div>
           <div class="stack">
@@ -105,6 +108,11 @@ const projectsView = (): View => {
         }
         .not-found .not-found-title {
           font-weight: 600;
+        }
+        .titleWrapper {
+          display: flex;
+          align-items: center;
+          gap: 8px;
         }
       </style>
       <div class="header action">

@@ -28,13 +28,13 @@ const editProjectView = (): View => {
       const endDateEl =
         document.querySelector<HTMLInputElement>("#projectEnd")!;
       const statusEl =
-        document.querySelector<HTMLInputElement>("projectStatus")!;
+        document.querySelector<HTMLInputElement>("#projectStatus")!;
 
       if (projectDetails) {
         titleEl.value = projectDetails.title || "";
         startDateEl.value = projectDetails.start_date || "";
         endDateEl.value = projectDetails.end_date || "";
-        statusEl.value = projectDetails.status;
+        statusEl.value = projectDetails?.status || "pending";
       }
 
       const formEl: HTMLFormElement = document.querySelector("#editProject")!;
@@ -122,7 +122,7 @@ const editProjectView = (): View => {
           </div>
           <div class="form-group">
             <label for="projectStatus">Status</label>
-            <select id="projectStatus" class="full">
+            <select id="projectStatus" class="full" value="${projectDetails?.status || "pending"}">
               <option value="pending">Pending</option>
               <option value="completed">Completed</option>
             </select>

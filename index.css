@@ -108,9 +108,9 @@ select.full {
 .badge {
     display: "block";
     width: "fit-content";
-    fontsize: calc(var(--base-typography-size) * 0.8);
+    font-size: calc(var(--base-typography-size) * 0.8);
     font-weight: 600;
-    padding: 6px 9px;
+    padding: 3px 6px;
     border-radius: 999px;
 }
 
@@ -120,7 +120,7 @@ select.full {
 }
 
 .badge.error {
-    background-color: red;
+    background-color: rgba(200, 0, 50, 1);
     color: #ffffff;
 }
 
