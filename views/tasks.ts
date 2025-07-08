@@ -66,9 +66,9 @@ const tasksView = (): View => {
         }
       });
 
-      const addProjectButtonEl: any = document.getElementById("addProject");
+      const addProjectButtonEl: any = document.getElementById("addTask");
       addProjectButtonEl.addEventListener("click", () => {
-        navigateTo("/add/project");
+        navigateTo("/add/task");
       });
     },
     template: `
@@ -128,7 +128,7 @@ const tasksView = (): View => {
           <h1>${projectDetails?.title}</h1>
           <p class="time">${formatHumanDate(projectDetails?.start_date)} ~ ${formatHumanDate(projectDetails.end_date)} @ ${renderTime(Number(projectDetails.duration))}</p>
         </div>
-        <button class="primary sm" id="addProject">Add</button>
+        <button class="primary sm" id="addTask">Add</button>
       </div>
       <div class="content">
         <ul id="projects-list">
