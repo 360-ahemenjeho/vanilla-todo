@@ -42,6 +42,10 @@ export function formatHumanDate(input: string) {
 export function renderTime(milliseconds: number): string {
   const seconds = milliseconds / 1000;
 
+  if (seconds < 1) {
+    return `0s`;
+  }
+
   if (seconds < 60) {
     return `${Math.round(seconds)}s`;
   }

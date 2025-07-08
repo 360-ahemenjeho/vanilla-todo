@@ -42,7 +42,7 @@ const addTaskView = (): View => {
           "<option disabled>Projects not found</option>";
       } else {
         projectSelectEl.innerHTML =
-          '<option value="">Select a project</option>';
+          "<option disabled>Select a project</option>";
 
         // Add project options
         projects.forEach((project: TaskInterface) => {

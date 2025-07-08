@@ -18,7 +18,7 @@ const tasksView = (): View => {
   const allTasks: TaskInterface[] = getItem(storeKeys.task);
   const tasks = allTasks?.filter((task) => task.project_id === projectId);
 
-  const renderProjectsList = () => {
+  const renderTaskLists = () => {
     if (!tasks?.length) {
       return `
         <li class="not-found">
@@ -132,7 +132,7 @@ const tasksView = (): View => {
       </div>
       <div class="content">
         <ul id="projects-list">
-          ${renderProjectsList()}
+          ${renderTaskLists()}
         </ul>
       </div>
     `,
