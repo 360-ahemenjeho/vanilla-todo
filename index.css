@@ -109,7 +109,7 @@ select.full {
     display: "block";
     width: "fit-content";
     font-size: calc(var(--base-typography-size) * 0.8);
-    font-weight: 600;
+    font-weight: 500;
     padding: 4px 6px;
     border-radius: 8px;
 }
