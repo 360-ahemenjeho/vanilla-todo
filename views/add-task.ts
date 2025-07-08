@@ -1,4 +1,4 @@
-import { Project } from "@/controllers/project";
+import { Task } from "@/controllers/task";
 import { storeKeys } from "@/lib/constants";
 import { getItem } from "@/lib/store-utils";
 import { TaskInterface } from "@/lib/types";
@@ -9,18 +9,38 @@ import { View } from "@/types/global";
 const addTaskView = (): View => {
   return {
     effects: () => {
-      const backButtonEl: any = document.getElementById("backButton");
-      backButtonEl.addEventListener("click", () => {
-        navigateTo("/projects");
+      const backButtonEl = document.getElementById("backButton");
+      backButtonEl?.addEventListener("click", () => {
+        navigateTo("/");
       });
 
-      // Fetch projects and populate select
+      const formEl = document.querySelector<HTMLFormElement>("#addTask");
+      const titleEl = document.querySelector<HTMLInputElement>("#taskTitle");
+      const startDateEl =
+        document.querySelector<HTMLInputElement>("#taskStart");
+      const endDateEl = document.querySelector<HTMLInputElement>("#taskEnd");
       const projectSelectEl =
         document.querySelector<HTMLSelectElement>("#projectId");
-      if (projectSelectEl) {
-        const projects = getItem(storeKeys.project);
 
-        // Clear existing options (except default ones if needed)
+      if (
+        !formEl ||
+        !titleEl ||
+        !startDateEl ||
+        !endDateEl ||
+        !projectSelectEl
+      ) {
+        console.error("Required form elements not found");
+        return;
+      }
+
+      // Fetch projects and populate select
+      const projects = getItem(storeKeys.project);
+
+      // Clear existing options and populate with projects
+      if (!projects) {
+        projectSelectEl.innerHTML =
+          "<option disabled>Projects not found</option>";
+      } else {
         projectSelectEl.innerHTML =
           '<option value="">Select a project</option>';
 
@@ -33,24 +53,16 @@ const addTaskView = (): View => {
         });
       }
 
-      const formEl: HTMLFormElement = document.querySelector("addTask")!;
-
-      if (!formEl) return;
-
       formEl.addEventListener("submit", (e) => {
         e.preventDefault();
 
-        const titleEl = document.querySelector<HTMLInputElement>("#taskTitle")!;
-        const startDateEl =
-          document.querySelector<HTMLInputElement>("#taskStart")!;
-        const endDateEl = document.querySelector<HTMLInputElement>("#taskEnd")!;
-
-        let title = titleEl?.value;
-        let startDate = startDateEl?.value;
-        let endDate = endDateEl?.value;
+        const title = titleEl.value.trim();
+        const startDate = startDateEl.value;
+        const endDate = endDateEl.value;
+        const projectId = projectSelectEl.value;
 
         if (!title) {
-          window.alert("Project title is required!");
+          window.alert("Task title is required!");
           return;
         }
         if (!startDate || !isValidDateString(startDate)) {
@@ -61,22 +73,30 @@ const addTaskView = (): View => {
           window.alert("Invalid end date!");
           return;
         }
+        if (!projectId) {
+          window.alert("A Project is required!");
+          return;
+        }
 
-        const result = Project.add({
-          title: title,
+        const result = Task.add({
+          title,
           start_date: startDate,
           end_date: endDate,
           status: "pending",
+          project_id: projectId,
         });
 
         if (result) {
           titleEl.value = "";
           startDateEl.value = "";
           endDateEl.value = "";
+          projectSelectEl.value = "";
 
-          window.alert("Project added successfully!");
-          navigateTo("/projects");
-        } else window.alert("Failed to add project!");
+          window.alert("Task added successfully!");
+          navigateTo("/");
+        } else {
+          window.alert("Failed to add task!");
+        }
       });
     },
     template: `
@@ -95,7 +115,7 @@ const addTaskView = (): View => {
     </style>
     <div>
       <div class="header">
-        <h1>Add Project</h1>
+        <h1>Add Task</h1>
       </div>
       <div class="content">
         <form id="addTask">
@@ -113,10 +133,7 @@ const addTaskView = (): View => {
           </div>
           <div class="form-group">
             <label for="projectId">Project</label>
-            <select id="projectId" class="full">
-              <option value="pending">Pending</option>
-              <option value="completed">Completed</option>
-            </select>
+            <select id="projectId" class="full"></select>
           </div>
           <div class="action">
             <button type="button" class="secondary md" id="backButton">Back</button>

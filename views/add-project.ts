@@ -8,7 +8,7 @@ const addProjectView = (): View => {
     effects: () => {
       const backButtonEl: any = document.getElementById("backButton");
       backButtonEl.addEventListener("click", () => {
-        navigateTo("/projects");
+        navigateTo("/");
       });
 
       const formEl: HTMLFormElement = document.querySelector("#addProject")!;
@@ -55,7 +55,7 @@ const addProjectView = (): View => {
           endDateEl.value = "";
 
           window.alert("Project added successfully!");
-          navigateTo("/projects");
+          navigateTo("/");
         } else window.alert("Failed to add project!");
       });
     },

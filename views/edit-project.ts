@@ -7,7 +7,7 @@ const editProjectView = (): View => {
   const id = getUrlParam("id");
 
   if (!id) {
-    navigateTo("/projects");
+    navigateTo("/");
     return { effects: () => {}, template: "" };
   }
 
@@ -17,7 +17,7 @@ const editProjectView = (): View => {
     effects: () => {
       const backButtonEl: any = document.getElementById("backButton");
       backButtonEl.addEventListener("click", () => {
-        navigateTo("/projects");
+        navigateTo("/");
       });
 
       // Populate form fields with existing project data
@@ -84,7 +84,7 @@ const editProjectView = (): View => {
 
         if (result) {
           window.alert("Project updated successfully!");
-          navigateTo("/projects");
+          navigateTo("/");
         } else window.alert("Failed to update project!");
       });
     },
