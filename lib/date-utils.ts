@@ -39,7 +39,13 @@ export function formatHumanDate(input: string) {
   return `${day}${ordinalSuffix(day)} ${month} ${year} ${formatTime(hour, minute)}`;
 }
 
-export function convertSeconds(seconds: number, unit: string): number {
+export function renderTime(milliseconds: number): string {
+  const seconds = milliseconds / 1000;
+
+  if (seconds < 60) {
+    return `${Math.round(seconds)}s`;
+  }
+
   const conversions: Record<string, number> = {
     m: 60, // minutes
     h: 3600, // hours
@@ -49,9 +55,17 @@ export function convertSeconds(seconds: number, unit: string): number {
     Y: 31557600, // years (365.25 days avg)
   };
 
-  if (!conversions[unit]) {
-    throw new Error(`Invalid unit: ${unit}. Use: m, h, d, w, M, Y`);
+  if (seconds < 3600) {
+    return `${Math.round(seconds / conversions.m)}mins`;
+  } else if (seconds < 86400) {
+    return `${Math.round(seconds / conversions.h)}hrs`;
+  } else if (seconds < 604800) {
+    return `${Math.round(seconds / conversions.d)}days`;
+  } else if (seconds < 2629746) {
+    return `${Math.round(seconds / conversions.w)}weeks`;
+  } else if (seconds < 31557600) {
+    return `${Math.round(seconds / conversions.M)}months`;
+  } else {
+    return `${Math.round(seconds / conversions.Y)}years`;
   }
-
-  return seconds / 1000 / conversions[unit];
 }

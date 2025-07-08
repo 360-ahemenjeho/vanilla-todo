@@ -68,7 +68,7 @@ export class Task {
   //   return true;
   // }
 
-  // static view(id: string): ProjectInterface | null {
+  // static view(id: string): TaskInterface | null {
   //   const projects = getItem(storeKeys.project) ?? [];
   //   const project = projects.find((project: any) => project.id === id);
   //   return project || null;

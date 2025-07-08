@@ -1,39 +1,47 @@
+import { Project } from "@/controllers/project";
 import { storeKeys } from "@/lib/constants";
-import { formatHumanDate, renderTime } from "@/lib/date-utils";
+import { renderTime, formatHumanDate } from "@/lib/date-utils";
 import { getItem } from "@/lib/store-utils";
-import { ProjectInterface } from "@/lib/types";
-import { buildUrlWithParam, navigateTo } from "@/lib/url";
+import { TaskInterface } from "@/lib/types";
+import { buildUrlWithParam, getUrlParam, navigateTo } from "@/lib/url";
 import { View } from "@/types/global";
 
-const projectsView = (): View => {
-  // Function body: Get data and prepare what to render
-  const projects: ProjectInterface[] = getItem(storeKeys.project);
+const tasksView = (): View => {
+  const projectId = getUrlParam("project_id");
+
+  if (!projectId) {
+    navigateTo("/");
+    return { effects: () => {}, template: "" };
+  }
+
+  const projectDetails: any = Project.view(projectId);
+  const allTasks: TaskInterface[] = getItem(storeKeys.task);
+  const tasks = allTasks?.filter((task) => task.project_id === projectId);
 
   const renderProjectsList = () => {
-    if (!projects?.length) {
+    if (!tasks?.length) {
       return `
         <li class="not-found">
-          <p class="not-found-title">No projects found</p>
-          <p>You don't have projects. Please add a project!</p>
+          <p class="not-found-title">This project don't have tasks.</p>
+          <p>You don't have tasks. Please add a task!</p>
         </li>
       `;
     }
 
-    return projects
+    return tasks
       .map(
-        (project) => `
+        (task) => `
       <li>
         <div class="card-header">
           <div class="column-stack">
             <div class="titleWrapper">
-              <p class="title">${project.title}</p>
-              <div class="badge ${project.status == "completed" ? "success" : "error"}">${project.status}</div>
+              <p class="title">${task.title}</p>
+              <div class="badge ${task.status == "completed" ? "success" : "error"}">${task.status}</div>
             </div>
-            <p class="time">${formatHumanDate(project.start_date)} ~ ${formatHumanDate(project.end_date)} @ ${renderTime(Number(project.duration))} Days.</p>
+            <p class="time">${formatHumanDate(task.start_date)} ~ ${formatHumanDate(task.end_date)} @ ${renderTime(Number(task.duration))}</p>
           </div>
           <div class="stack">
-            <button class="secondary sm" data-action="tasks" data-id="${project.id}">Tasks</button>
-            <button class="primary sm" data-action="edit" data-id="${project.id}">Edit</button>
+            <button class="primary sm" data-action="edit" data-id="${task.id}">Edit</button>
           </div>
         </div>
       </li>
@@ -55,10 +63,6 @@ const projectsView = (): View => {
 
         if (action === "edit" && id) {
           buildUrlWithParam(`/edit/project`, "id", id);
-        }
-
-        if (action === "tasks" && id) {
-          buildUrlWithParam(`/tasks`, "project_id", id);
         }
       });
 
@@ -98,7 +102,7 @@ const projectsView = (): View => {
           display: flex;
           flex-direction: column;
         }
-        .card-header .time {
+        .time {
           font-size: calc(var(--base-typography-size) * 0.888);
         }
         .action {
@@ -120,7 +124,10 @@ const projectsView = (): View => {
         }
       </style>
       <div class="header action">
-        <h1>Projects</h1>
+        <div class="titleWrapper">
+          <h1>${projectDetails?.title}</h1>
+          <p class="time">${formatHumanDate(projectDetails?.start_date)} ~ ${formatHumanDate(projectDetails.end_date)} @ ${renderTime(Number(projectDetails.duration))}</p>
+        </div>
         <button class="primary sm" id="addProject">Add</button>
       </div>
       <div class="content">
@@ -132,4 +139,4 @@ const projectsView = (): View => {
   };
 };
 
-export default projectsView;
+export default tasksView;

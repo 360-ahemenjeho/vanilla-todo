@@ -3,6 +3,7 @@ import {
   editProjectView,
   notFoundView,
   projectsView,
+  tasksView,
 } from "@/views";
 import addTaskView from "@/views/add-task";
 
@@ -12,6 +13,8 @@ export default function router() {
   switch (pathname) {
     case "/":
       return projectsView;
+    case "/tasks":
+      return tasksView;
     case "/add/project":
       return addProjectView;
     case "/edit/project":
