@@ -1,6 +1,7 @@
 import { storeKeys } from "@/lib/constants";
 import { getItem, setItem } from "@/lib/store-utils";
 import { TaskInterface } from "@/lib/types";
+import { projectsView } from "@/views";
 
 export class Task {
   static add({
@@ -27,50 +28,51 @@ export class Task {
       project_id,
     };
 
-    const previousTasks = getItem(storeKeys.project) ?? [];
+    const previousTasks = getItem(storeKeys.task) ?? [];
     const newTasks = [...previousTasks, task];
 
     setItem(storeKeys.task, newTasks);
     return true;
   }
 
-  // static update(
-  //   id: string,
-  //   { title, start_date, end_date, status }: ProjectInterface,
-  // ): boolean {
-  //   const startDate = new Date(start_date);
-  //   const endDate = new Date(end_date);
+  static update(
+    id: string,
+    { title, start_date, end_date, status, project_id }: TaskInterface,
+  ): boolean {
+    const startDate = new Date(start_date);
+    const endDate = new Date(end_date);
 
-  //   const duration = endDate.getTime() - startDate.getTime();
+    const duration = endDate.getTime() - startDate.getTime();
 
-  //   const updatedProject = {
-  //     title,
-  //     start_date,
-  //     end_date,
-  //     duration,
-  //     id,
-  //     status,
-  //   };
+    const updatedTask = {
+      title,
+      start_date,
+      end_date,
+      duration,
+      id,
+      status,
+      project_id,
+    };
 
-  //   const previousProjects = getItem(storeKeys.project) ?? [];
-  //   const projectIndex = previousProjects.findIndex(
-  //     (project: any) => project.id === id,
-  //   );
+    const previousTasks = getItem(storeKeys.task) ?? [];
+    const taskIndex = previousTasks.findIndex(
+      (project: any) => project.id === id,
+    );
 
-  //   if (projectIndex === -1) {
-  //     return false;
-  //   }
+    if (taskIndex === -1) {
+      return false;
+    }
 
-  //   const newProjects = [...previousProjects];
-  //   newProjects[projectIndex] = updatedProject;
+    const newTasks = [...previousTasks];
+    newTasks[taskIndex] = updatedTask;
 
-  //   setItem(storeKeys.project, newProjects);
-  //   return true;
-  // }
+    setItem(storeKeys.task, newTasks);
+    return true;
+  }
 
-  // static view(id: string): TaskInterface | null {
-  //   const projects = getItem(storeKeys.project) ?? [];
-  //   const project = projects.find((project: any) => project.id === id);
-  //   return project || null;
-  // }
+  static view(id: string): TaskInterface | null {
+    const tasks = getItem(storeKeys.task) ?? [];
+    const task = tasks.find((task: any) => task.id === id);
+    return task || null;
+  }
 }

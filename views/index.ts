@@ -3,3 +3,4 @@ export { default as notFoundView } from "./not-found";
 export { default as projectsView } from "./projects";
 export { default as editProjectView } from "./edit-project";
 export { default as tasksView } from "./tasks";
+export { default as editTaskView } from "./edit-task";

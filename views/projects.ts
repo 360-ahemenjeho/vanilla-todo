@@ -73,6 +73,9 @@ const projectsView = (): View => {
           margin: 0;
           padding: 0;
           list-style-type: none;
+          display: flex;
+          flex-direction: column;
+          gap: 8px;
         }
         ul li {
           padding: calc(var(--round-lg) * 0.5) calc(var(--round-lg) * 0.75);
