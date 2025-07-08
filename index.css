@@ -115,12 +115,12 @@ select.full {
 }
 
 .badge.success {
-    background-color: green;
+    background-color: rgb(70, 130, 0);
     color: #ffffff;
 }
 
 .badge.error {
-    background-color: rgba(200, 0, 50, 1);
+    background-color: rgb(200, 50, 0);
     color: #ffffff;
 }
 

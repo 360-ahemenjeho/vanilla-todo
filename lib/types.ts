@@ -7,14 +7,14 @@ export interface ProjectInterface {
   status: "completed" | "pending";
 }
 
-export interface TodoInterface {
-  id?: string;
+export interface TaskInterface {
   title: string;
-  description: string;
-  done: boolean;
-  start: string;
-  end: string;
-  priority: "later" | "soon" | "urgent";
+  id?: string;
+  start_date: string;
+  end_date: string;
+  duration?: string;
+  status: "completed" | "pending";
+  project_id?: string;
 }
 
 export interface ProjectEventElInterface {

@@ -29,7 +29,7 @@ const projectsView = (): View => {
               <p class="title">${project.title}</p>
               <div class="badge ${project.status == "completed" ? "success" : "error"}">${project.status}</div>
             </div>
-            <p class="time">${formatHumanDate(project.start_date)} - ${formatHumanDate(project.end_date)} @ ${convertSeconds(Number(project.duration), "d")} Days</p>
+            <p class="time">${formatHumanDate(project.start_date)} ~ ${formatHumanDate(project.end_date)} @ ${convertSeconds(Number(project.duration), "d")} Days.</p>
           </div>
           <div class="stack">
             <button class="secondary sm" data-action="tasks" data-id="${project.id}">Tasks</button>
